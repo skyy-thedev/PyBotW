@@ -16,9 +16,10 @@ for cliente in dados_clientes:
     # Extrair informações sobre nome, telefone e data de vencimento
     nome = cliente['Nome']
     telefone = cliente['Telefone']
+    valor = cliente['Valor']
     vencimento = cliente['DataVencimento']
     
-    mensagem = f'Olá {nome}, seu boleto vence no dia {vencimento}. Favor pagar no link https://www.link_do_pagamento.com'
+    mensagem = f'Olá {nome}, seu boleto de valor {valor} vence no dia {vencimento}. Favor pagar no link https://www.link_do_pagamento.com'
 
     # Criar links personalizados do WhatsApp e enviar mensagens para cada cliente
     # com base nos dados do arquivo JSON
@@ -35,4 +36,5 @@ for cliente in dados_clientes:
     except:
         print(f'Não foi possível enviar mensagem para {nome}')
         with open('erros.csv', 'a', newline='', encoding='utf-8') as arquivo:
-            arquivo.write(f'{nome},{telefone}{os.linesep}')
+            arquivo.write(f'{nome},{telefone},{valor}{os.linesep}')
+print('Todos os contatos foram cobrados com sucesso.')
